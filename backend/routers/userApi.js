@@ -5,20 +5,20 @@ var UserModel = require('../models/userschema');
 const bcrypt = require("bcrypt");   
 const jwt = require("jsonwebtoken");  
 // const password = bcrypt.hash(req.body.password, 3);
-// Connecting to database 
-var query = 'mongodb://localhost/ait'
+// // Connecting to database 
+// var query = 'mongodb://localhost/miniproject'
 
-const db = (query);
-mongoose.Promise = global.Promise;
+// const db = (query);
+// mongoose.Promise = global.Promise;
 
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, function (error) {
-    if (error) {
-        console.log("Error!" + error);
-    }
-});
+// mongoose.connect(db, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }, function (error) {
+//     if (error) {
+//         console.log("Error!" + error);
+//     }
+// });
 router.post('/signup', async function (req, res) {
     var newUser = new UserModel();
     const hash = await bcrypt.hash(req.body.password, 10);

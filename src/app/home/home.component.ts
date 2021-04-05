@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
 import { Renderer2 } from '@angular/core'
 @Component({
@@ -7,7 +9,7 @@ import { Renderer2 } from '@angular/core'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private renderer:Renderer2) { }
+  constructor(private renderer:Renderer2, private router:Router) { }
   renderExternalScript(src: string): HTMLScriptElement {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -17,6 +19,7 @@ export class HomeComponent implements OnInit {
     this.renderer.appendChild(document.body, script);
     return script;
   }
+  
   ngOnInit(): void {
     var ExternalScripts: string[];
     ExternalScripts=[
