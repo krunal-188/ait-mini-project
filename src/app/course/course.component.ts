@@ -18,6 +18,7 @@ export class CourseComponent implements OnInit {
   data:any;
   maxlength: number;
   private degree_type: any;
+  public type:any;
   dataSource:MatTableDataSource<any>;
   displayedColumns: string[] = ['Name','Course','Description','Fee','Duration','Location'];
 
@@ -49,7 +50,8 @@ export class CourseComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.degree_type = params['degree_type'];
       console.log(this.degree_type);
-      console.log("Krunal");
+      // console.log("Krunal");
+      this.type = this.degree_type;
       this.dataService.getdata(this.degree_type).subscribe(result=>{
           this.data = result;
           console.log(this.data);

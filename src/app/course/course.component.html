@@ -1,6 +1,15 @@
 <app-nav></app-nav>
-
+<br>
+<br>
 <div class="container">
+  <div class="p-5 text-center">
+    <h1 mb-3>{{type}} programmes</h1>
+  </div>
+  <div class="hr-theme-slash-2">
+    <div class="hr-line"></div>
+    <div class="hr-icon"><img src="https://img.icons8.com/ios/50/000000/graduation-scroll.png"/></div>
+    <div class="hr-line"></div>
+  </div>
   <form>
     <label>Filter: </label>
     <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Torrens University" #input>
@@ -59,4 +68,12 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </div>
+<br>
+<div class="hr-theme-slash-2">
+  <div class="hr-line"></div>
+  <div class="hr-icon"><img src="https://img.icons8.com/ios/50/000000/graduation-scroll.png"/></div>
+  <div class="hr-line"></div>
+</div>
+<br>
+<br>
 <app-footer></app-footer>

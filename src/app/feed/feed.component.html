@@ -1,29 +1,40 @@
-<!-- <button (click)="GetRssFeedData()">
-    Get Rss Data
-</button>
-
-<h2>
-    {{RssData?.rss.channel[0].title[0]}}
-</h2>
-Total Item: {{RssData?.rss.channel[0].item.length}}
-<ul>
-    <li *ngFor="let o of RssData?.rss.channel[0].item"><a href="{{o.link[0]}}">{{o.title[0]}}</a></li>
-</ul> -->
-<!-- <p>{{RssData[0].title}}</p> -->
-<div class="container">    
-    <table class="table table-bordered table-hover">    
-      <tr>    
-        <th>Id</th>    
-        <th>Name</th>    
-        <th>Gender</th>    
-        <th>Mobile</th>    
-      </tr>    
-      <tr *ngFor="let item of xmlItems">    
-        <td>{{item.title}}</td>    
-        <td>{{item.link}}</td>    
-        <td>{{item.description}}</td>    
-        <td>{{item.pubDate}}</td>    
-      </tr>    
-    </table>    
-  </div>    
-  
+<app-nav></app-nav>
+<div class="content">
+  <div class="container">
+    <div class="p-5 text-center">
+      <h1 mb-3>News Feed<img src="https://img.icons8.com/color/48/000000/rss.png" /></h1>
+    </div>
+    <div class="hr-theme-slash-2">
+      <div class="hr-line"></div>
+      <div class="hr-icon"><img src="https://img.icons8.com/emoji/50/000000/newspaper-emoji.png" /></div>
+      <div class="hr-line"></div>
+    </div>
+    <br>
+    <div *ngFor="let item of xmlItems">
+      <div class="row">
+        <ul>
+          <div class="card" style="width: 67rem;">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{item.link}}">{{item.title}}</a>
+              </h5>
+              <div class="card-text">
+                <p class="mb-0 mt-2 font-italic">{{item.description}}</p>
+                <br>
+                <h6>Publish Date: {{item.pubDate}} </h6>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <!-- end row -->
+    <div class="hr-theme-slash-2">
+      <div class="hr-line"></div>
+      <div class="hr-icon"><img src="https://img.icons8.com/emoji/50/000000/newspaper-emoji.png" /></div>
+      <div class="hr-line"></div>
+    </div>
+  </div>
+  <!-- container -->
+</div>
+<app-footer></app-footer>

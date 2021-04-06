@@ -1,3 +1,4 @@
+import { AboutusComponent } from './aboutus/aboutus.component';
 import { CourseComponent } from './course/course.component';
 import { FeedComponent } from './feed/feed.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'feed',component: FeedComponent},
   {path:'course/:degree_type',component:CourseComponent},
   {path:'feed/:feed_type',component:FeedComponent},
+  {path:'aboutus',component:AboutusComponent},
   // {path:'feed',component:FeedComponent}
 ];
 

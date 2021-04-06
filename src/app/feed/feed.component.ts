@@ -39,7 +39,7 @@ export class FeedComponent implements OnInit {
       responseType: "text"
     };
     console.log(feed_type);
-    return this.http.get("./../../assets/"+this.feed_type+".xml", {
+    return this.http.get("./../../assets/xml/"+this.feed_type+".xml", {
       headers: new HttpHeaders()
         .set('Content-Type', 'text/xml')
         .append('Access-Control-Allow-Methods', 'GET')

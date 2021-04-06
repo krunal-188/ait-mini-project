@@ -1,7 +1,14 @@
 
+.body{
+background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
 .bodybg-color {
-    color: #fff;
-    background: #228ed6;
+    /* color: #fff; */
+    /* background: #228ed6; */
     font-family: 'Roboto', sans-serif;
 }
 .form-control{
@@ -21,7 +28,7 @@
     margin: 30px auto;
 }
 .signup-form form{
-    color: #999;
+    /* color: #999; */
     border-radius: 3px;
     margin-bottom: 15px;
     background: #fff;

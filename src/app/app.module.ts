@@ -20,6 +20,7 @@ import { CourseComponent } from './course/course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DescriptionSummmary } from './description.pipe';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DescriptionSummmary } from './description.pipe';
     FooterComponent,
     FeedComponent,
     CourseComponent,
-    DescriptionSummmary
+    DescriptionSummmary,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
