@@ -1,3 +1,5 @@
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { DataserviceService } from './_services/dataservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
@@ -15,6 +17,9 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { FeedComponent } from './feed/feed.component';
 import { CourseComponent } from './course/course.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DescriptionSummmary } from './description.pipe';
 
 @NgModule({
   declarations: [
@@ -26,14 +31,19 @@ import { CourseComponent } from './course/course.component';
     HomeComponent,
     FooterComponent,
     FeedComponent,
-    CourseComponent
+    CourseComponent,
+    DescriptionSummmary
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     AuthService,

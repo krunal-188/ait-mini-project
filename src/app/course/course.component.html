@@ -1,19 +1,60 @@
 <app-nav></app-nav>
-<p>{{data[0].university}}</p>
-<table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>location</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-     <tr *ngFor="let d of data">
-           <td>{{d.university}}</td>
-           <td>{{d.location}}</td>
-           <td>{{d.duration}}</td>
-       </tr>
-    </tbody>
+
+
+<form>
+  <label>Filter: </label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Torrens University" #input>
+</form>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.university}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Course">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Course </th>
+      <td mat-cell *matCellDef="let row"> {{row.course}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let row"> {{row.description | summary:row.description.length:maxlength }} 
+        <div *ngIf="row.description.length>20 && row.description.length!=maxlength" (click)="showAll(row.description.length)">
+          Read More
+        </div>
+        <div *ngIf="row.description.length == maxlength" (click)="hideAll(row.description.length)">
+          Read Less
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Fee">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee </th>
+      <td mat-cell *matCellDef="let row"> {{row.fee}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Duration">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+      <td mat-cell *matCellDef="let row"> {{row.duration}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+      <td mat-cell *matCellDef="let row"> {{row.location}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
   </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
 <app-footer></app-footer>
