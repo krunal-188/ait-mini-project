@@ -14,7 +14,9 @@ const routes: Routes = [
   {path: 'home',component: HomeComponent},
   {path: 'profile',component: ViewProfileComponent},
   {path: 'feed',component: FeedComponent},
-  {path:'course/:degree_type',component:CourseComponent}
+  {path:'course/:degree_type',component:CourseComponent},
+  {path:'feed/:feed_type',component:FeedComponent},
+  // {path:'feed',component:FeedComponent}
 ];
 
 @NgModule({

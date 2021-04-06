@@ -43,7 +43,8 @@ import { DescriptionSummmary } from './description.pipe';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
