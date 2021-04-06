@@ -1,14 +1,16 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { map, filter, switchMap } from 'rxjs/operators';
-// localStorage.setItem('token',result.token);
+import { map} from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route:Router) { }
   login(credentials){
     const headers = new HttpHeaders().set('Content-Type','application/json');
     console.log(JSON.stringify(credentials));
@@ -41,8 +43,23 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token');
+    this.route.navigate(['/login']);
+
   }
   isLoggedin(){
+    let jhelper= new JwtHelperService();
+    let token=localStorage.getItem('token');
+    if(!token)
+    return false;
+    let isExpired=jhelper.isTokenExpired(token);
+    return !isExpired;
+  }
+  get currentUser(){
+    let token=localStorage.getItem('token');
+    if(!token)
+    return null;
+    let jhelper= new JwtHelperService();
+    return jhelper.decodeToken(token);
 
   }
 }

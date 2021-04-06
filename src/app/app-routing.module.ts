@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'register',component: RegisterComponent},
   {path: 'home',component: HomeComponent},
-  {path: 'profile',component: ViewProfileComponent},
+  {path: 'profile/:user_id',component: ViewProfileComponent},
   {path: 'feed',component: FeedComponent},
   {path:'course/:degree_type',component:CourseComponent},
   {path:'feed/:feed_type',component:FeedComponent},

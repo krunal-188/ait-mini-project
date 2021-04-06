@@ -85,15 +85,20 @@ router.get('/fetchAllUsers', async function(req,res){
     }
 })
 router.get('/findfirst/:id', function (req, res) {
+    console.log("krunal");
     UserModel.findOne({
-            id: req.params.id
+            _id: req.params.id
         },
         function (err, data) {
+            console.log(data);
             if (err) {
                 console.log(err);
                 res.status(500).send("Something went wrong");
             } else {
-                res.send(data);
+                res.status(201).json({  
+                    message: "User Fetched",  
+                    data: data  
+                  });
             }
         });
 });
@@ -115,13 +120,18 @@ router.post('/update', async function (req, res) {
 
     try {
         const data = await UserModel.findOneAndUpdate({
-            id: req.body.id
+            _id: req.body.id
         }, {
-            Name: req.body.Name
+            name: req.body.fullname,
+            age:req.body.age,
+            address:req.body.address
         }, {
             new: true
         })
-        res.send(data)
+        res.status(201).json({  
+            message: "User Updated",  
+            data: data  
+          });
     } catch (error) {
         res.status(500).send("Something went wrong");
     }

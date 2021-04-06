@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from './../auth.service';
@@ -10,10 +11,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  
-  constructor(private authservice: AuthService, private http: HttpClient) { }
+  username:String;
+  user_id: String;
+  constructor(private authservice: AuthService, private http: HttpClient, private route:Router) { }
   ngOnInit(): void {
-    
+    if (!this.authservice.isLoggedin())
+    {
+      localStorage.removeItem('token');
+      this.route.navigate(['/login']);
+    }
+    this.username=this.authservice.currentUser.username;
+    this.user_id=this.authservice.currentUser.userId;
+  }
+
+  lout(){
+    this.authservice.logout();
   }
   
   // feed() {

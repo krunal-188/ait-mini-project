@@ -2,9 +2,7 @@ import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import * as xml2js from 'xml2js';
 import { NewsRss } from '../feed/news-rss';
-import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'

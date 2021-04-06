@@ -1,1 +1,65 @@
-<p>view-profile works!</p>
+<app-nav></app-nav>
+<br>
+<br>
+<div class="container">
+    <div class="main-body">
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <!-- <p class="text-secondary mb-1">Full Stack Developer</p>
+                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="userupdate(f.value)">
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" placeholder="User Id" name="id" [(ngModel)]="user_id" required hidden>
+                    </div>
+                  </div>
+                <div class="control-group">
+                  <label class="control-label">Full Name:</label>
+                  <div class="controls">
+                    <input type="text" placeholder="Full Name" name="fullname" [(ngModel)]="data.name" required>
+                  </div>
+                </div>
+                <br>
+                <div class="control-group">
+                  <label class="control-label">Email:</label>
+                  <div class="controls">
+                    {{ data.username }}
+                  </div>
+                </div>
+                <br>
+                <div class="control-group">
+                  <label class="control-label">Age</label>
+                  <div class="controls">
+                    <input type="number" required name="age" [(ngModel)]="data.age" placeholder="Age">
+                  </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <label class="control-label">Address</label>
+                    <div class="controls">
+                      <input type="text" required name="address" [(ngModel)]="data.address" placeholder="Address">
+                    </div>
+                  </div>
+                  <br>
+                <div class="form-actions">
+                  <input type="submit" value="Update" class="btn btn-primary">
+                </div>
+              </form>
+              <span class="text-success">{{updatemsg}}</span>
+          </div>
+        </div>
+    </div>
+<br>
+<br>
+<app-footer></app-footer>

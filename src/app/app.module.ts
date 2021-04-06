@@ -1,3 +1,4 @@
+import { UserService } from './_services/user.service';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { DataserviceService } from './_services/dataservice.service';
@@ -50,7 +51,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
   ],
   providers: [
     AuthService,
-    DataserviceService
+    DataserviceService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
