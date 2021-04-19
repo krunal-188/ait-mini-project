@@ -6,11 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {DataTablesModule} from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
@@ -42,12 +41,12 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DataTablesModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,

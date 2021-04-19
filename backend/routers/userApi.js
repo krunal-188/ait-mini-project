@@ -4,21 +4,18 @@ var router = express.Router();
 var UserModel = require('../models/userschema');
 const bcrypt = require("bcrypt");   
 const jwt = require("jsonwebtoken");  
-// const password = bcrypt.hash(req.body.password, 3);
-// // Connecting to database 
-// var query = 'mongodb://localhost/miniproject'
-
-// const db = (query);
-// mongoose.Promise = global.Promise;
-
-// mongoose.connect(db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }, function (error) {
-//     if (error) {
-//         console.log("Error!" + error);
-//     }
-// });
+var multer = require("multer");
+var upload=multer();
+fs = require("fs-extra");
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./backend/uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now()+'.'+file.mimetype.split('/')[1]);
+    },
+  });
+  var upload = multer({ storage: storage });
 router.post('/signup', async function (req, res) {
     var newUser = new UserModel();
     const hash = await bcrypt.hash(req.body.password, 10);
@@ -27,6 +24,7 @@ router.post('/signup', async function (req, res) {
     newUser.age = req.body.age;
     newUser.address = req.body.address;
     newUser.password = hash;
+    newUser.imagepath=null; 
     try{
         const data = await newUser.save().then(result =>{  
             res.status(201).json({  
@@ -103,13 +101,20 @@ router.get('/findfirst/:id', function (req, res) {
         });
 });
 
-router.post('/deleteUserPhoto', async function (req, res) {
+router.get('/deleteUserPhoto/:id', async function (req, res) {
 
     try {
-        const data = await UserModel.findOneAndDelete({
-            name: req.body.name
+        const data = await UserModel.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            imagepath: null
+        }, {
+            new: true
         })
-        res.send("Successfully Deleted: "+data)
+        res.status(201).json({  
+            message: "Successfully Deleted",  
+            data: data  
+          });
     } catch (error) {
         res.status(500).send("Something went wrong");
     }
@@ -136,4 +141,28 @@ router.post('/update', async function (req, res) {
         res.status(500).send("Something went wrong");
     }
 });
+
+router.post("/uploadphoto",upload.single('image'),async function (req, res) {
+    try{
+    const file = req.file;
+    console.log(file);
+    console.log("ITS FINE "+req.body.id);
+    // Define a JSONobject for the image attributes for saving to database
+    const data = await UserModel.findOneAndUpdate({
+        _id: req.body.id
+    }, {
+        imagepath: 'http://localhost:3000/' + req.file.filename
+    }, {
+        new: true
+    })
+    res.status(201).json({  
+        message: "User Photo Updated",  
+        data: data  
+      });
+    
+    }
+    catch(error){
+        res.send("Something went wrong");
+    }
+  });
 module.exports = router;

@@ -33,4 +33,25 @@ export class UserService {
 
     }));
   }
+  userphotoupdate(image,id){
+    const photodata=new FormData();
+    photodata.append("id",id);
+    photodata.append("image",image,id);
+    return this.http.post('http://localhost:3000/api/uploadphoto',photodata)
+    .pipe(map((response: any)=>{
+      let result = response;
+      console.log(result);
+      return result;
+    }));
+  }
+  deleteuserphoto(user_id){
+    let url='http://localhost:3000/api/deleteUserPhoto/'+user_id;
+    console.log(url);
+    return this.http.get(url)
+    .pipe(map((response: any)=>{
+      let result = response;
+      console.log(result);
+      return result;
+    }));
+  }
 }

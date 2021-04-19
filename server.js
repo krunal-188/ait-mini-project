@@ -7,6 +7,7 @@ const port=3000;
 const app=express(); 
 var mongoose = require('mongoose');
 const cors = require("cors");
+
 var corsOptions = {
     origin: "http://localhost:4200"
   };
@@ -40,6 +41,7 @@ mongoose.connect(db, {
 });
 app.use('/api', api);
 app.use('/course', course);
+app.use(express.static( __dirname +'/backend/uploads'));
 
 app.listen(port, function() { 
     console.log("Server is listening at port:" + port); 
