@@ -31,7 +31,7 @@ var corsOptions = {
 // });  
 const result=require('dotenv').config({path:__dirname+'/.env'})
 
-var query = 'mongodb+srv://krunal:'+ process.env.MONGO_PASS + '@cluster0.v92iw.mongodb.net/AIT?retryWrites=true&w=majority'
+var query = 'mongodb+srv://krunal:aitrocks@cluster0.v92iw.mongodb.net/AIT?retryWrites=true&w=majority'
 
 const db = (query);
 mongoose.Promise = global.Promise;
