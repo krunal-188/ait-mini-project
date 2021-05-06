@@ -29,7 +29,8 @@ var corsOptions = {
 //         "GET, POST, PATCH, DELETE, OPTIONS");      
 //     next();  
 // });  
-require('dotenv').config();
+const result=require('dotenv').config({path:__dirname+'/.env'})
+
 var query = 'mongodb+srv://krunal:'+ process.env.MONGO_PASS + '@cluster0.v92iw.mongodb.net/AIT?retryWrites=true&w=majority'
 
 const db = (query);
