@@ -9,9 +9,9 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
   userfetch(user_id){
-    let url='http://localhost:3000/api/findfirst/'+user_id;
+    let url='api/findfirst/'+user_id;
     console.log(url);
-    return this.http.get(url)
+    return this.http.post(url,{})
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);
@@ -22,7 +22,7 @@ export class UserService {
   }
   userupdate(credentials){
     const headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/api/update',JSON.stringify(credentials),{headers:headers})
+    return this.http.post('api/update',JSON.stringify(credentials),{headers:headers})
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);
@@ -37,7 +37,7 @@ export class UserService {
     const photodata=new FormData();
     photodata.append("id",id);
     photodata.append("image",image,id);
-    return this.http.post('http://localhost:3000/api/uploadphoto',photodata)
+    return this.http.post('api/uploadphoto',photodata)
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);
@@ -45,9 +45,9 @@ export class UserService {
     }));
   }
   deleteuserphoto(user_id){
-    let url='http://localhost:3000/api/deleteUserPhoto/'+user_id;
+    let url='api/deleteUserPhoto/'+user_id;
     console.log(url);
-    return this.http.get(url)
+    return this.http.post(url,{})
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);

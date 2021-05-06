@@ -9,7 +9,7 @@ var upload=multer();
 fs = require("fs-extra");
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "./backend/uploads");
+      cb(null, "./public/uploads");
     },
     filename: function (req, file, cb) {
       cb(null, file.fieldname + "-" + Date.now()+'.'+file.mimetype.split('/')[1]);
@@ -45,7 +45,6 @@ router.post('/authenticate', async function(req,res){
                 console.log(err);
                 res.status(500).send("Auth Failed");
             } else {
-                console.log(data);
         bcrypt.compare(req.body.password, data.password, function(err, response) {
             if(err){
                 console.log(err);
@@ -53,7 +52,6 @@ router.post('/authenticate', async function(req,res){
             }
             if (response) {
              // Passwords match
-             console.log(response);
              const token = jwt.sign({username: data.username, userId: data._id},  
                 'Ait_Rocks',   
                 { expiresIn: "1h"}
@@ -64,7 +62,6 @@ router.post('/authenticate', async function(req,res){
                   });
             } else {
              // Passwords don't match
-             console.log(res);
                 res.status(401).send('Auth Failed');  
             }
           });
@@ -82,8 +79,7 @@ router.get('/fetchAllUsers', async function(req,res){
         res.status(500).send("Something went wrong");
     }
 })
-router.get('/findfirst/:id', function (req, res) {
-    console.log("krunal");
+router.post('/findfirst/:id', function (req, res) {
     UserModel.findOne({
             _id: req.params.id
         },
@@ -101,7 +97,7 @@ router.get('/findfirst/:id', function (req, res) {
         });
 });
 
-router.get('/deleteUserPhoto/:id', async function (req, res) {
+router.post('/deleteUserPhoto/:id', async function (req, res) {
 
     try {
         const data = await UserModel.findOneAndUpdate({
@@ -151,7 +147,7 @@ router.post("/uploadphoto",upload.single('image'),async function (req, res) {
     const data = await UserModel.findOneAndUpdate({
         _id: req.body.id
     }, {
-        imagepath: 'http://localhost:3000/' + req.file.filename
+        imagepath: 'uploads/' + req.file.filename
     }, {
         new: true
     })

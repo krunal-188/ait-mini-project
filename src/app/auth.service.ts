@@ -14,7 +14,7 @@ export class AuthService {
   login(credentials){
     const headers = new HttpHeaders().set('Content-Type','application/json');
     console.log(JSON.stringify(credentials));
-    return this.http.post('http://localhost:3000/api/authenticate',JSON.stringify(credentials),{headers:headers})
+    return this.http.post('api/authenticate',JSON.stringify(credentials),{headers:headers})
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);
@@ -29,7 +29,7 @@ export class AuthService {
   signup(credentials){
     console.log(JSON.stringify(credentials));
     const headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/api/signup',JSON.stringify(credentials),{headers:headers})
+    return this.http.post('api/signup',JSON.stringify(credentials),{headers:headers})
     .pipe(map((response: any)=>{
       let result = response;
       console.log(result);
