@@ -9,7 +9,7 @@ var upload=multer();
 fs = require("fs-extra");
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "./public/uploads");
+      cb(null, "./public/assets/uploads");
     },
     filename: function (req, file, cb) {
       cb(null, file.fieldname + "-" + Date.now()+'.'+file.mimetype.split('/')[1]);
@@ -147,7 +147,7 @@ router.post("/uploadphoto",upload.single('image'),async function (req, res) {
     const data = await UserModel.findOneAndUpdate({
         _id: req.body.id
     }, {
-        imagepath: 'uploads/' + req.file.filename
+        imagepath: 'assets/uploads/' + req.file.filename
     }, {
         new: true
     })
